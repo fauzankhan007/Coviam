@@ -1,0 +1,30 @@
+---
+# tasks file for tomcatInstall
+- name: Install JDK Default JDK
+  apt: name=default-jdk
+
+- name: add group "tomcat"
+  group: name=tomcat
+
+- name: add user "tomcat"
+  user: name=tomcat group=tomcat home=/opt/tomcat createhome=no
+  become: true
+  become_method: sudo
+
+- name: Download Tomcat
+  get_url: url=http://apache.mirrors.ionfish.org/tomcat/tomcat-9/v9.0.14/bin/apache-tomcat-9.0.14.tar.gz dest=/opt
+
+- name: Extract Archive
+  command: chdir=/opt /bin/tar xvzf /opt/apache-tomcat-9.0.14.tar.gz -C /opt creates=/opt/apache-tomcat-9.0.14
+
+- name: change ownership of Tomcat installation
+  file: path=/opt/apache-tomcat-9.0.14 owner=tomcat state=directory recurse=yes
+
+- name: Install tomcat init script
+  copy: src=/etc/ansible/tomcatInstall/files/tomcatInitscript.sh dest=/etc/init.d/tomcat mode=0755
+
+- name: systemd daemon-reload
+  shell: systemctl daemon-reload
+
+- name: Start Tomcat
+  service: name=tomcat state=started enabled=yes
