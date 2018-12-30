@@ -21,11 +21,14 @@ export JAVA_HOME=/usr/lib/jvm/java-1.11.0-openjdk-amd64
 export PATH=$JAVA_HOME/bin:$PATH
  
 #CATALINA_HOME is the location of the bin files of Tomcat  
-export CATALINA_HOME=/opt/tomcat/apache-tomcat-9.0.14
+export CATALINA_HOME=/opt/apache-tomcat-9.0.14
  
 #CATALINA_BASE is the location of the configuration files of this instance of Tomcat
-export CATALINA_BASE=/opt/tomcat/apache-tomcat-9.0.14
- 
+export CATALINA_BASE=/opt/apache-tomcat-9.0.14
+
+#catalina options
+export CATALINA_OPTS="$CATALINA_OPTS -Xms512M -Xmx512M -server -XX:+UseParallelGC"
+
 #TOMCAT_USER is the default user of tomcat
 export TOMCAT_USER=tomcat
  
@@ -52,9 +55,9 @@ start() {
     #/bin/su -p -s /bin/sh tomcat
         if [ `user_exists $TOMCAT_USER` = "1" ]
         then
-                su $TOMCAT_USER -c $CATALINA_HOME/bin/catalina.sh
+                su $TOMCAT_USER -c $CATALINA_HOME/bin/startup.sh
         else
-                sh $CATALINA_HOME/bin/catalina.sh
+                sh $CATALINA_HOME/bin/startup.sh
         fi
         status
   fi

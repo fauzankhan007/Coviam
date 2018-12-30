@@ -15,7 +15,7 @@
   get_url: url=http://apache.mirrors.ionfish.org/tomcat/tomcat-9/v9.0.14/bin/apache-tomcat-9.0.14.tar.gz dest=/opt
 
 - name: Extract Archive
-  command: chdir=/opt /bin/tar xvzf /opt/apache-tomcat-9.0.14.tar.gz -C /opt creates=/opt/apache-tomcat-9.0.14
+  command: chdir=/opt /bin/tar xvzf /opt/apache-tomcat-9.0.14.tar.gz -C /opt creates=/opt/sample
 
 - name: change ownership of Tomcat installation
   file: path=/opt/apache-tomcat-9.0.14 owner=tomcat state=directory recurse=yes
@@ -27,4 +27,4 @@
   shell: systemctl daemon-reload
 
 - name: Start Tomcat
-  service: name=tomcat state=started enabled=yes
+  service: name=tomcat state=started

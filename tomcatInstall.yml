@@ -5,4 +5,5 @@
   become_method: sudo
 
   tasks:
-       - include: /etc/ansible/tomcatInstall/tasks/main.yml
+       - include: /etc/ansible/tomcatInstall/tasks/InstallTomcat.yml
+       - include: /etc/ansible/tomcatInstall/tasks/deployment.yml  

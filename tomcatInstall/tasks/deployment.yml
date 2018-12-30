@@ -1,0 +1,14 @@
+---
+
+- git:
+     repo: 'https://github.com/fauzankhan007/sample.git'
+     dest: /etc/ansible/warLocation
+
+- name: Copy war file to webapps directory
+  copy: src=/etc/ansible/warLocation/sample.war dest=/opt/apache-tomcat-9.0.14/webapps
+
+- name: Stop Tomcat
+  service: name=tomcat state=stopped
+
+- name: Start Tomcat
+  service: name=tomcat state=started
