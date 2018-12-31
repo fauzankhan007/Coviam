@@ -21,6 +21,7 @@ When the ansible-playbook is executed it will install tomcat in the /opt directo
 and the Xms and Xmx value is set dynamically it will set 80% of the Ram value as Xmx. And also it will deploy the sample.war in webapps directory of tomcat.
 
 Location for tomcat service script file is /etc/ansible/tomcatInstall/files/tomcatInitscript.sh
+
 Location for Xmx value setting script is /etc/ansible/tomcatInstall/files/RandomXmxValue.sh
 
 After successfull exection run below url in browser.
