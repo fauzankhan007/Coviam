@@ -27,7 +27,7 @@ export CATALINA_HOME=/opt/apache-tomcat-9.0.14
 export CATALINA_BASE=/opt/apache-tomcat-9.0.14
 
 #catalina options
-export CATALINA_OPTS="$CATALINA_OPTS -Xms512M -Xmx512M -server -XX:+UseParallelGC"
+#export CATALINA_OPTS="$CATALINA_OPTS -Xms512M -Xmx512M -server -XX:+UseParallelGC"
 
 #TOMCAT_USER is the default user of tomcat
 export TOMCAT_USER=tomcat

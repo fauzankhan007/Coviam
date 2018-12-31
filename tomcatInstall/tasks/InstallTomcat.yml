@@ -26,5 +26,8 @@
 - name: systemd daemon-reload
   shell: systemctl daemon-reload
 
+- name: Set Xmx and Xms value randomly
+  script: /etc/ansible/tomcatInstall/files/RandomXmxValue.sh
+
 - name: Start Tomcat
   service: name=tomcat state=started
